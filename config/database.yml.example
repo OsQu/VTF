@@ -1,0 +1,12 @@
+development:
+  adapter: postgresql
+  database: vtf
+  username: manny
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: vtf-test
+  username: manny
+  timeout: 5000
+
