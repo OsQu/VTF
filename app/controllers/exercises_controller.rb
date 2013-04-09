@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
   before_filter :assign_active_exercise
 
   def show
-
+    @exercise = @active_exercise
   end
 
   def assign_active_exercise
