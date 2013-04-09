@@ -197,7 +197,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   ffaker
   guard-rspec
   guard-spork
