@@ -1,14 +1,20 @@
 FactoryGirl.define do
-  sequence :email do |e|
-    "test-guy-#{e}@testmail.com"
-  end
-
-  sequence :password do |e|
-    "verysecret-#{e}"
+  sequence :email do |n|
+    "test-email-#{n}@testmail.com"
   end
 
   factory :user do
     email
-    password
+    password "verysecret"
+  end
+
+  factory :category do
+    name "XSS"
+  end
+
+  factory :exercise do
+    category
+    sequence(:name) { |n| "Exercise ##{n}" }
+    description { "Description for #{name}" }
   end
 end
