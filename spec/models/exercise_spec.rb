@@ -4,7 +4,7 @@ describe Exercise do
   describe "validation" do
     it "should validate precense of name" do
       category = FactoryGirl.create :category
-      e = Exercise.new category: category, description: "Blabla"
+      e = Exercise.new description: "Blabla"
       expect {
         e.save!
       }.to raise_error(ActiveRecord::RecordInvalid)
