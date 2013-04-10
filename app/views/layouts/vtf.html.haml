@@ -9,5 +9,9 @@
   .row
     %h1.text-center Vulnerability Test Field
   .row
-    .span12
-      = yield
+    .container-fluid
+      .row-fluid
+        .span2
+          = render "shared/categories"
+        .span10
+          = yield
