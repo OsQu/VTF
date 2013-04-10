@@ -22,8 +22,8 @@ describe ExercisesController do
       assigns[:active_exercise].should eq(@exercise)
     end
 
-    it "should assign exercise" do
-      @assigns[:exercise].should eq(@exercise)
+    it "should assign " do
+      assigns[:exercise].should eq(@exercise)
     end
   end
 end
