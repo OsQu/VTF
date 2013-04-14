@@ -23,6 +23,14 @@ Install all the dependencies:
 
     bundle install
 
+Initialize databases using rake:
+
+    bundle exec rake db:setup
+
+Also let's initialize test environment database:
+
+    RAILS_ENV=test bundle exec db:setup
+
 Running
 -------
 
