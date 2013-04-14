@@ -12,6 +12,21 @@ Requirements
 
 Installation
 ------------
+
+## Using VirtualBox and Vagrant
+
+Just install [VirtualBox](https://www.virtualbox.org/) and
+[Vagrant](http://www.vagrantup.com/) and run:
+
+    vagrant up
+
+Vagrant mounts current folder as a `/vagrant` folder in quest machine, so ssh to
+virtual machine with `vagrant ssh` and move to that directory: `cd /vagrant`
+
+## Manually
+
+Here are instructions how to set up VTF manually:
+
 Copy `config/database.yml.config` to `~/.vtf/database.yml` and edit to have correct data
 
 Add databases (for example setup):
@@ -30,6 +45,7 @@ Initialize databases using rake:
 Also let's initialize test environment database:
 
     RAILS_ENV=test bundle exec db:setup
+
 
 Running
 -------
