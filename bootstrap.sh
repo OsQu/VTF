@@ -4,6 +4,7 @@ apt-get update
 
 # Install and configure dependencies
 
+
 # PostgreSql
 if ! hash psql 2>/dev/null; then
   apt-get install -y postgresql
@@ -40,3 +41,16 @@ fi
 
 sudo -u vagrant HOME=/home/vagrant bundle exec rake db:setup
 sudo -u vagrant HOME=/home/vagrant RAILS_ENV=test bundle exec rake db:setup
+
+# Set up virtual environment for exercises
+apt-get install -y apache2 apache2-suexec libapache2-mod-fcgid
+a2enmod userdir
+a2enmod suexec
+
+if [ ! -f /etc/apache2/sites-available/vtf ]; then
+  cp vtf.site /etc/apache2/sites-available/vtf
+fi
+
+a2dissite default
+a2ensite vtf
+service apache2 restart
