@@ -7,7 +7,6 @@
 		AllowOverride None
 	</Directory>
 
-	# Allow running cgi files
 	<Directory /home/*/public_html/app>
 		Order allow,deny
 		Allow from all

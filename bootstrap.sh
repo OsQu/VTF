@@ -55,3 +55,8 @@ fi
 a2dissite default
 a2ensite vtf
 service apache2 restart
+
+# Exercise frameworks. Since exercises are pretty tricky to setup, just install
+# them globally.
+
+gem install sinatra
