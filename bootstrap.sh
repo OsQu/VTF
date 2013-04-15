@@ -46,6 +46,7 @@ sudo -u vagrant HOME=/home/vagrant RAILS_ENV=test bundle exec rake db:setup
 apt-get install -y apache2 apache2-suexec libapache2-mod-fcgid
 a2enmod userdir
 a2enmod suexec
+a2enmod rewrite
 
 if [ ! -f /etc/apache2/sites-available/vtf ]; then
   cp vtf.site /etc/apache2/sites-available/vtf

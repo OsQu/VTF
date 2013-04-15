@@ -8,19 +8,17 @@
 	</Directory>
 
 	# Allow running cgi files
-	<Directory /home/*/public_html/cgi-bin>
-		Options +ExecCGI
-		SetHandler fcgid-script
-
+	<Directory /home/*/public_html/app>
 		Order allow,deny
 		Allow from all
+		AllowOverride All
 	</Directory>
 
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 
 	# Possible values include: debug, info, notice, warn, error, crit,
 	# alert, emerg.
-	LogLevel warn
+	LogLevel error
 
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
