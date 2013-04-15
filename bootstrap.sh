@@ -58,5 +58,6 @@ service apache2 restart
 
 # Exercise frameworks. Since exercises are pretty tricky to setup, just install
 # them globally.
-
+apt-get install -y libfcgi-dev
+gem install fcgi
 gem install sinatra
