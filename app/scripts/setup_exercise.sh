@@ -5,13 +5,14 @@ EXERCISE=$2
 
 # Validate that User is only letters and exercise is only numbers
 
-if [[ ! $USER = *[a-z]* ]]; then
+if [[ ! $USER =~ ^[a-z]+$ ]]; then
   echo "USER parameter was invalid"
   exit
 fi
 
-if [[ ! $EXERCISE = *[a-z]* ]]; then
+if [[ ! $EXERCISE =~ ^[a-z]+$ ]]; then
   echo "EXERCISE parameter was invalid"
+  exit
 fi
 
 NAME=$USER$EXERCISE
