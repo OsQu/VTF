@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /~testguy/app
+RewriteBase /~PLACEHOLDER/app
 
 Options +ExecCGI +FollowSymLinks
 AddHandler fcgid-script .fcgi

@@ -1,7 +1,8 @@
 require 'sinatra'
+require './environment_helper'
 
 class MySinatraApp < Sinatra::Application
-	get '/~testguy/app/hi' do
+	get EnvironmentHelper.route('hi') do
 		"TODO: EXERCISES!"
 	end
 end
