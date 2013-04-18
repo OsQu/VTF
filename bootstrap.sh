@@ -9,6 +9,7 @@ apt-get update
 if ! hash psql 2>/dev/null; then
   apt-get install -y postgresql
   sudo -u postgres createuser --superuser vagrant
+  sudo -u postgres createuser --superuser root
 fi
 
 # Bundler
