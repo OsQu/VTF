@@ -28,7 +28,7 @@ class AcmeVault < Sinatra::Application
 
       unless errors[:store].empty?
         session[:errors] = errors
-        redirect to(EnvironmentHelper.route(''))
+        redirect EnvironmentHelper.route('')
       end
 
       # Store secret
@@ -50,7 +50,7 @@ class AcmeVault < Sinatra::Application
 
     unless errors[:find].empty?
       session[:errors] = errors
-      redirect to(EnvironmentHelper.route(''))
+      redirect EnvironmentHelper.route('')
     end
 
     # Find secrets
