@@ -13,7 +13,7 @@ Requirements
 Installation
 ------------
 
-## Using VirtualBox and Vagrant
+### Using VirtualBox and Vagrant
 
 Just install [VirtualBox](https://www.virtualbox.org/) and
 [Vagrant](http://www.vagrantup.com/) and run:
@@ -23,7 +23,7 @@ Just install [VirtualBox](https://www.virtualbox.org/) and
 Vagrant mounts current folder as a `/vagrant` folder in quest machine, so ssh to
 virtual machine with `vagrant ssh` and move to that directory: `cd /vagrant`
 
-## Manually
+### Manually
 
 Here are instructions how to set up VTF manually:
 
