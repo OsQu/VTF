@@ -9,3 +9,18 @@
 .sources.area
 %h2 Sources
 %p TODO: Sources here :)
+
+#create-modal.modal.hide.fade
+  .modal-header
+    %button.close{:type => "button", :data => {:dismiss => "modal"}, :aria_hidden => "true"} &times;
+    %h3 Sandbox
+
+  .modal-body
+    %p#wait-text Hang on, we're creating your sandbox!
+    %p#ready-text
+      There, you can access your sandbox from
+      %a#sandbox-url{:href => "#", :target => "_blank"} here.
+
+  .modal-footer
+    %button.btn{:type => "button", :data => {:dismiss => "modal"}, :aria_hidden => "true"} Close
+
