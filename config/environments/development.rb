@@ -36,4 +36,6 @@ VTF::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV['SANDBOX_URL'] ||= 'http://localhost:8080'
 end

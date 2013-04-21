@@ -34,4 +34,6 @@ VTF::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  ENV['SANDBOX_URL'] ||= 'http://test.com'
 end

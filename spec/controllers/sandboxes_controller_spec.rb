@@ -27,11 +27,26 @@ describe SandboxesController do
       post :create, exercise_id: @exercise
     end
 
+    it "should return url for sandbox" do
+      post :create, exercise_id: @exercise
+      response.status.should eq(200)
+      body = MultiJson.load(response.body)
+      body['sandbox'].should eq("#{ENV['SANDBOX_URL']}/~#{@user.username}#{@exercise.parameterized_name}/app")
+    end
+
     it "should return 500 if running the startup script failed" do
       Kernel.should_receive(:system).and_return(false)
 
       post :create, exercise_id: @exercise
       response.status.should eq(500)
     end
+
+    it "should not create sandbox twice" do
+      expect {
+        post :create, exercise_id: @exercise
+        post :create, exercise_id: @exercise
+      }.to change{Sandbox.count}.by(1)
+    end
+
   end
 end

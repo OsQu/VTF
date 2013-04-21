@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validate :email_provides_correct_username
   after_create :create_username
 
+  has_many :sandboxes
+
   private
 
   def username_part
