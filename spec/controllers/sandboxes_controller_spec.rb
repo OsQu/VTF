@@ -20,7 +20,9 @@ describe SandboxesController do
 
     it "should call setup script with command line" do
       script_location = Rails.root.join("app","scripts", "setup_exercise.sh")
-      Kernel.should_receive(:system).with("sudo #{script_location}").and_return(false)
+      Kernel.should_receive(:system)
+        .with("sudo #{script_location} #{@user.username} #{@exercise.parameterized_name}")
+        .and_return(false)
 
       post :create, exercise_id: @exercise
     end

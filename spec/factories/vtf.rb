@@ -25,5 +25,6 @@ FactoryGirl.define do
   factory :exercise do
     sequence(:name) { |n| "Exercise ##{n}" }
     description { "Description for #{name}" }
+    parameterized_name "exercise"
   end
 end

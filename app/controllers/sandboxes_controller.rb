@@ -6,11 +6,12 @@ class SandboxesController < ApplicationController
   end
 
   def create
-    sandbox = Sandbox.new user: current_user, exercise: sandbox_params[:exercise]
+    sandbox = Sandbox.new user: current_user, exercise: exercise
     if sandbox.save
       # Fire up the sandbox
       startup_script = Rails.root.join("app", "scripts", "setup_exercise.sh")
-      unless Kernel.system("sudo #{startup_script}")
+      Kernel.system("echo `pwd`")
+      unless Kernel.system("sudo #{startup_script} #{current_user.username} #{sandbox.exercise.parameterized_name}")
         render status: 500, text: "Failed to run startup_script"
         return
       end
@@ -24,7 +25,11 @@ class SandboxesController < ApplicationController
 
   private
 
+  def exercise
+    Exercise.find sandbox_params[:exercise_id]
+  end
+
   def sandbox_params
-    params.permit(:exercise)
+    params.permit(:exercise_id)
   end
 end
