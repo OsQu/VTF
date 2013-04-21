@@ -15,6 +15,11 @@ if [[ ! $EXERCISE =~ ^[a-z]+$ ]]; then
   exit
 fi
 
+if [ ! -d ../../exercises/$EXERCISE ]; then
+  echo "Exercise $EXERCISE does not exists."
+  exit
+fi
+
 NAME=$USER$EXERCISE
 
 # Create user with correct home folder template
@@ -30,3 +35,11 @@ find . -type f -print0 | xargs -0 sed -i "s/PLACEHOLDER/$NAME/g"
 
 # Give correct permissions to app
 chmod 755 public_html/app
+
+# Run setup script if present
+cd public_html/app/
+
+if [ -f setup.sh ]; then
+  chmod u+x setup.sh
+  su $NAME -c ./setup.sh
+fi

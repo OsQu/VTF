@@ -1,0 +1,31 @@
+.container
+  %h1 Acme Vault
+
+  %p
+    Using Acme Vault you can store all your deepest secret to the place where
+    they are safe! Just remember to type your name so you can retrieve your
+    secrets later! Oh, we have some very sensitive clients so please don't
+    do anything stupid!
+
+  %form.store-secret.form-inline{:action => "store", :method => "POST"}
+    %legend Store a secret
+    - if @errors && @errors.has_key?(:store)
+      %ul
+      - @errors[:store].each do |error|
+        %li
+          %p.text-error= error
+
+    %input{:type => 'text', :placeholder => 'Name', :name => 'name'}
+    %input{:type => 'text', :placeholder => 'Secret', :name => 'secret'}
+    %button.btn{:type => 'submit'} Store
+
+  %form.get-secret.form-inline{:action => "find"}
+    %legend Find a secret
+    - if @errors && @errors.has_key?(:find)
+      %ul
+      - @errors[:find].each do |error|
+        %li
+          %p.text-error= error
+    %input{:type => 'text', :placeholder => 'Name', :name => 'name'}
+    %button.btn{:type => 'submit'} Find
+

@@ -1,0 +1,16 @@
+.container
+  .row
+    - if @secrets.empty?
+      %p& Sorry, no secrets found for #{@name}
+    - else
+      %p& Your secrets for #{@name}:
+      %table.table
+        %thead
+          %tr
+            %th Name
+            %th Secret
+        %tbody
+        - @secrets.each do |secret|
+          %tr
+          %td&= secret[0]
+          %td&= secret[1]

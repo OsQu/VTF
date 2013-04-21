@@ -62,3 +62,6 @@ service apache2 restart
 apt-get install -y libfcgi-dev
 gem install fcgi
 gem install sinatra
+gem install haml
+gem install datamapper
+gem install pg

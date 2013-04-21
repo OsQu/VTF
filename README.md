@@ -47,6 +47,21 @@ Also let's initialize test environment database:
     RAILS_ENV=test bundle exec db:setup
 
 
+Adding exercises
+----------------
+
+First, create exercise locally using your favourite development tools.
+
+When the exercise is ready to deployed, do the following:
+
+1. Create new folder to exercises: `mkdir exercises/<my exercise>`. Exercise
+   name must match the username rules.
+2. Add folder structure `public_html/app` to the exercise folder: `mkdir -p exercises/<my exercise>/public_html/app`
+3. Move exercise files to the `app` folder.
+4. Convert your setup script to bash script by renaming it to `.sh` and adding correct [shebang](http://en.wikipedia.org/wiki/Shebang_(Unix))
+5. Copy `.htaccess` and `dispatch.fcgi` from sample exercise to the exercise and edit to suit the exercise.
+6. Modify your exercise to fit the "production" system: Move static files to static/ folder and serve them from there etc.
+
 Running
 -------
 

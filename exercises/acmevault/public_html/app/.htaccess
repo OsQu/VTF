@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /~PLACEHOLDER/app
+
+Options +ExecCGI +FollowSymLinks
+AddHandler fcgid-script .fcgi
+
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
