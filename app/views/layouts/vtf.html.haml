@@ -8,6 +8,7 @@
 
   .row
     %h1.text-center Vulnerability Test Field
+    = link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-link pull-right", :id => "sign-out-btn"
   .row
     .container-fluid
       .row-fluid
