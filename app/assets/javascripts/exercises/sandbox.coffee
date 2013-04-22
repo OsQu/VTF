@@ -1,5 +1,4 @@
 $ ->
-
   showModal = (id) ->
     $("##{id}").modal(
       keyboard: true
@@ -16,9 +15,12 @@ $ ->
 
     updateWait(true)
     showModal("create-modal")
-    $.post("#{window.location}/sandbox").done (body) ->
+    sandbox = $.post("#{window.location}/sandbox")
+    sandbox.done (body) ->
       $("#sandbox-url").attr("href", body.sandbox)
       updateWait(false)
+    sandbox.reject (err) ->
+      alert("Error occured! Please close the overlay and try again!")
 
   $("#sandbox-url").click ->
     hideModal("create-modal")

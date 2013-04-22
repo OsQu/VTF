@@ -77,6 +77,7 @@ sed -i s/manny/vagrant/ config/database.yml
 chown -R vagrant:vagrant /var/www/vagrant
 sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake db:setup
 sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake exercises:db_data
+sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake exercises:source_code
 sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake assets:precompile
 
 

@@ -8,6 +8,7 @@ gem 'devise'
 gem 'multi_json'
 gem 'rdiscount'
 gem 'haml'
+gem 'coderay'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,7 +24,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-rails'
 
-  gem 'coderay'
 end
 
 group :development, :test do

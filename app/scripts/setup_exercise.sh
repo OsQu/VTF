@@ -52,3 +52,5 @@ if [ -f setup.sh ]; then
   echo "and running"
   su $NAME -c ./setup.sh
 fi
+
+exit 0

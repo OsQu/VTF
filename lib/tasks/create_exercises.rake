@@ -14,7 +14,7 @@ way around the limitation.."
     acmevault_md = RDiscount.new(acmevault_desc)
     sqli.exercises << Exercise.create(name: "Acme Vault", parameterized_name: "acmevault",
       description: acmevault_md.to_html,
-      sources: "app.rb, environment_helper.rb, views/find.haml, views/index.haml, views/layout.haml, views/stored.haml")
+      sources: "app.rb, environment_helper.rb, setup.sh, views/find.haml, views/index.haml, views/layout.haml, views/stored.haml")
   end
 
   desc "Compile source code hilights to database"
