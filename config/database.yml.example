@@ -10,3 +10,8 @@ test:
   username: manny
   timeout: 5000
 
+production:
+  adapter: postgresql
+  database: vtf-production
+  username: manny
+  timeout: 5000

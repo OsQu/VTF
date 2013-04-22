@@ -7,8 +7,8 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "raring64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/raring/current/raring-server-cloudimg-vagrant-amd64-disk1.box"
+  config.vm.box = "quantal64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/quantal/current/quantal-server-cloudimg-vagrant-amd64-disk1.box"
 
   config.vm.provision :shell, :path => "bootstrap.sh"
 
@@ -16,7 +16,8 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 3000, host: 3000 # Default Rails port
-  config.vm.network :forwarded_port, guest: 80, host: 8080 # Exercie ports
+  config.vm.network :forwarded_port, guest: 5100, host: 5100 # Exercise ports
+  config.vm.network :forwarded_port, guest: 80, host: 8080 # Apache
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.

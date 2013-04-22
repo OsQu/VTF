@@ -1,4 +1,5 @@
-<VirtualHost *:80>
+# Exercise envs
+<VirtualHost *:5100>
 	ServerAdmin webmaster@localhost
 
 	DocumentRoot /var/www
@@ -20,4 +21,14 @@
 	LogLevel error
 
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+# Rails application
+<VirtualHost *:80>
+	ServerName www.vtf.com
+	DocumentRoot /var/www/vagrant/public
+	<Directory /var/www/vagrant/public>
+		Allow from all
+		Options -MultiViews
+	</Directory>
 </VirtualHost>

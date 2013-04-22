@@ -42,8 +42,10 @@ fi
 
 sudo -u vagrant HOME=/home/vagrant bundle exec rake db:setup
 sudo -u vagrant HOME=/home/vagrant RAILS_ENV=test bundle exec rake db:setup
+sudo -u vagrant HOME=/home/vagrant bundle exec rake exercises:db_data
 
-# Set up virtual environment for exercises
+
+# Set up virtual environment for exercises and install apache
 apt-get install -y apache2 apache2-suexec libapache2-mod-fcgid
 a2enmod userdir
 a2enmod suexec
@@ -52,6 +54,31 @@ a2enmod rewrite
 if [ ! -f /etc/apache2/sites-available/vtf ]; then
   cp vtf.site /etc/apache2/sites-available/vtf
 fi
+
+# Deploy VTF with passenger
+apt-get install -y libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev
+
+gem install passenger
+yes | passenger-install-apache2-module
+cp /vagrant/passenger /etc/apache2/conf.d/
+
+# Actual deployment, deploy to different place not to mess up with git repository
+if [ -d /var/www/vagrant]; then
+    rm -rf /var/www/vagrant
+    dropdb vtf-production
+fi
+
+cp -R /vagrant /var/www/
+cd /var/www/vagrant
+createdb vtf-production
+cp config/database.yml.example config/database.yml
+sed -i s/manny/vagrant/ config/database.yml
+
+chown -R vagrant:vagrant /var/www/vagrant
+sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake db:setup
+sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake exercises:db_data
+sudo -u vagrant HOME=/home/vagrant RAILS_ENV=production bundle exec rake assets:precompile
+
 
 a2dissite default
 a2ensite vtf
