@@ -62,6 +62,8 @@ When the exercise is ready to deployed, do the following:
 5. Copy `.htaccess` and `dispatch.fcgi` from sample exercise to the exercise and edit to suit the exercise.
 6. Modify your exercise to fit the "production" system: Move static files to static/ folder and serve them from there etc.
 
+TODO: Explain all the different "magic files"
+
 Running
 -------
 
