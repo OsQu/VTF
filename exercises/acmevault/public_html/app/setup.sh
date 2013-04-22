@@ -27,7 +27,7 @@ vip_secret_query = "
   INSERT INTO secrets(customer, name, secret)
   VALUES('vip', 'very secret', $1);"
 
-answer = IO.read('answer.txt')
+answer = IO.read('env')
 
 with_database_connection do |c|
   c.exec(vip_secret_query, [answer.strip])
