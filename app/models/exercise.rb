@@ -2,8 +2,8 @@ class Exercise < ActiveRecord::Base
   attr_accessible :description, :name, :parameterized_name, :sources
 
   belongs_to :category
-  has_many :sandboxes
-  has_many :source_codes
+  has_many :sandboxes, :dependent => :delete_all
+  has_many :source_codes, :dependent => :delete_all
 
   validates :name, :presence => true
   validates :parameterized_name, :format => { :with => /\A[a-z]+\z/, :message => "Only lowcase letters are allowed"}

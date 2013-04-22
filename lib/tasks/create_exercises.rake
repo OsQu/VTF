@@ -26,7 +26,6 @@ way around the limitation.."
 
   desc "Remove all the exercises and categories"
   task :remove_db_data => :environment do
-    # TODO: Cleanup sandboxes on destroy!
     Category.all.each { |c| c.destroy }
     Exercise.all.each { |e| e.destroy }
   end
