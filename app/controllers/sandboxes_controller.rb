@@ -15,6 +15,8 @@ class SandboxesController < ApplicationController
           render status: 500, text: "Failed to run startup_script"
           return
         end
+
+        sandbox.copy_env_file
       end
     end
     render json: MultiJson.dump({ sandbox: sandbox.url})

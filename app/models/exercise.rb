@@ -17,4 +17,8 @@ class Exercise < ActiveRecord::Base
       source_codes << SourceCode.new(name: file, body: scanned_file.html)
     end
   end
+
+  def path
+    File.join(ENV['EXERCISE_PATH'], parameterized_name, "public_html", "app")
+  end
 end

@@ -36,4 +36,6 @@ VTF::Application.configure do
   config.active_support.deprecation = :stderr
 
   ENV['SANDBOX_URL'] ||= 'http://test.com'
+
+  ENV['EXERCISE_PATH'] ||= Rails.root.join("spec/fixtures/exercises").to_s
 end

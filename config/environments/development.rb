@@ -38,4 +38,6 @@ VTF::Application.configure do
   config.assets.debug = true
 
   ENV['SANDBOX_URL'] ||= 'http://localhost:5100'
+
+  ENV['EXERCISE_PATH'] ||= Rails.root.join("exercises").to_s
 end
