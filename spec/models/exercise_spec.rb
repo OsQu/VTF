@@ -30,7 +30,10 @@ describe Exercise do
 
   describe "compile source codes" do
     before :each do
-      @exercise = FactoryGirl.create :exercise, name: "Acme Vault", parameterized_name: "acmevault"
+      @exercise = FactoryGirl.create(:exercise,
+        name: "Acme Vault", parameterized_name: "acmevault",
+        sources: "foo.rb, bar.rb")
+
       @foo_source = File.read(Rails.root.join("spec", "fixtures", "some_source.rb"))
       @bar_source = File.read(Rails.root.join("spec", "fixtures", "more_source.rb"))
 
@@ -39,17 +42,17 @@ describe Exercise do
     end
 
     it "should scan files using coderay" do
-      @exercise.compile_source_codes(["foo.rb", "bar.rb"])
+      @exercise.compile_source_codes
     end
 
     it "should create sourcecode models from source code" do
       expect{
-        @exercise.compile_source_codes(["foo.rb", "bar.rb"])
+        @exercise.compile_source_codes
       }.to change{SourceCode.count}.by(2)
     end
 
     it "should set compiled source as source code body" do
-      @exercise.compile_source_codes(["foo.rb", "bar.rb"])
+      @exercise.compile_source_codes
 
       compiled_foo = CodeRay.scan(@foo_source, :ruby).html
 
@@ -58,7 +61,7 @@ describe Exercise do
     end
 
     def source_path(exercise, file)
-      Rails.root.join("exercise", exercise, "public_html", "app", file)
+      Rails.root.join("exercises", exercise, "public_html", "app", file)
     end
 
   end

@@ -6,8 +6,11 @@
   %button#start-sandbox.btn.btn-large.btn-primary{:type => "button"} Start Sandbox
 
 .sources.area
-%h2 Sources
-%p TODO: Sources here :)
+  %h2 Sources
+  - @exercise.source_codes.each do |source|
+    %h3= source.name
+    .source.CodeRay
+      %pre!= source.body
 
 #create-modal.modal.hide.fade
   .modal-header

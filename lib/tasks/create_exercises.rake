@@ -1,7 +1,7 @@
 namespace :exercises do
   # Markdown descriptions. These should be moved to some proper place
-  sqli_desc = "
-Avatar Vault is a website where one can store and fetch secrets she or he
+  acmevault_desc = "
+Acme Vault is a website where one can store and fetch secrets she or he
 may posess.
 
 Your task is simply to reveal everyone else's secrets. Note that usually
@@ -11,9 +11,17 @@ way around the limitation.."
   desc "Add exercises to database"
   task :db_data => :environment do
     sqli = Category.create name: "SQL Injection"
-    sqli_md = RDiscount.new(sqli_desc)
+    acmevault_md = RDiscount.new(acmevault_desc)
     sqli.exercises << Exercise.create(name: "Acme Vault", parameterized_name: "acmevault",
-      description: sqli_md.to_html)
+      description: acmevault_md.to_html,
+      sources: "app.rb, environment_helper.rb, views/find.haml, views/index.haml, views/layout.haml, views/stored.haml")
+  end
+
+  desc "Compile source code hilights to database"
+  task :source_code => :environment do
+    Exercise.all.each do |e|
+      e.compile_source_codes
+    end
   end
 
   desc "Remove all the exercises and categories"
