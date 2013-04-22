@@ -65,4 +65,6 @@ VTF::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   ENV['SANDBOX_URL'] ||= 'http://localhost:5100'
+  ENV['EXERCISE_PATH'] ||= Rails.root.join("exercises").to_s
+
 end
