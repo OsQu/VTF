@@ -22,6 +22,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-rails'
+
+  gem 'coderay'
 end
 
 group :development, :test do
