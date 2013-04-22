@@ -10,13 +10,12 @@ class SandboxesController < ApplicationController
       sandbox = Sandbox.new user: current_user, exercise: exercise
       if sandbox.save
         # Fire up the sandbox
+        sandbox.copy_env_file
         startup_script = Rails.root.join("app", "scripts", "setup_exercise.sh")
         unless Kernel.system("sudo #{startup_script} #{current_user.username} #{sandbox.exercise.parameterized_name}")
           render status: 500, text: "Failed to run startup_script"
           return
         end
-
-        sandbox.copy_env_file
       end
     end
     render json: MultiJson.dump({ sandbox: sandbox.url})

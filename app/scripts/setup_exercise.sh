@@ -3,6 +3,7 @@
 USER=$1
 EXERCISE=$2
 EXERCISE_ROOT=exercises
+SANDBOXENV_PATH=tmp/sandboxenvs
 
 # Validate that User is only letters and exercise is only numbers
 
@@ -33,6 +34,12 @@ createuser -S -D -R $NAME
 echo "Creating database"
 createdb -O $NAME $NAME
 
+# Override env with generated
+echo "Copying sandboxenv file if exists from $SANDBOXENV_PATH/$NAME"
+if [ -f $SANDBOXENV_PATH/$NAME ]; then
+  cp $SANDBOXENV_PATH/$NAME /home/$NAME/public_html/app/env
+fi
+
 # Replace placeholders in with NAME
 echo "Replacing placeholder with name"
 cd /home/$NAME
@@ -41,6 +48,7 @@ find . -type f -print0 | xargs -0 sed -i "s/PLACEHOLDER/$NAME/g"
 # Give correct permissions to app
 echo "Permissioins to app"
 chmod 755 public_html/app
+
 
 # Run setup script if present
 echo "Running the setup script if exists"

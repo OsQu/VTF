@@ -72,6 +72,14 @@ describe SandboxesController do
         contents.include?("RAND").should be_false
       end
 
+      it "should store env contents to sandbox" do
+        post :create, exercise_id: @exercise
+
+        sandbox = Sandbox.where(user_id: @user, exercise_id: @exercise).first
+        env = File.read sandboxenv_path(@exercise)
+        sandbox.env.should eq(env)
+      end
+
       def sandboxenv_path(exercise)
         Rails.root.join("tmp", "sandboxenvs", "#{@user.username}#{exercise.parameterized_name}")
       end

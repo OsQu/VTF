@@ -1,5 +1,5 @@
 class Sandbox < ActiveRecord::Base
-  attr_accessible :user, :exercise
+  attr_accessible :user, :exercise, :env
   belongs_to :user
   belongs_to :exercise
 
@@ -20,11 +20,11 @@ class Sandbox < ActiveRecord::Base
         end
       end
 
-      # TODO: SAVE TO SANDBOX
       content = replace_rand(File.read(env_file))
-
       FileUtils.mkdir_p env_file_location :only_folder => true
       File.open(env_file_location, 'w') { |f| f.write(content) }
+
+      update_attributes(env: content)
     end
   end
 
