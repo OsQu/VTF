@@ -1,0 +1,16 @@
+{
+    "user": {
+        "name": "aphorism-lover",
+        "password": "RAND",
+        "aphorisms": [
+            {
+                "author": "Mark Twain",
+                "body": "Fortune knocks at every man`s door once in a life, but in a good many cases the man is in a neighbouring saloon and does not hear her."
+            },
+            {
+                "author": "Awesome Author",
+                "body": "RAND I'll never tell this one to anybody! RAND"
+            }
+        ]
+    }
+}

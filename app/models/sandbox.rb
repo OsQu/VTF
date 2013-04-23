@@ -11,7 +11,7 @@ class Sandbox < ActiveRecord::Base
     env_file = File.join(exercise.path, "env")
     if File.exists?(env_file)
       def replace_rand(content)
-        if content.count("RAND") == 0
+        if content.index("RAND").nil?
           return content
         else
           random_string = (1..12).map{('a'..'z').to_a[rand(26)]}.join

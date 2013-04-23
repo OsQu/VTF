@@ -1,0 +1,53 @@
+.container
+  %a.btn.btn-link.pull-left{:href => "#{EnvironmentHelper.route("")}"} Back
+  .row
+    .offset3
+      %h2 Manage Aphorisms
+  .row
+    %legend Your Aphorisms:
+    - if @aphorisms.nil? || @aphorisms.empty?
+      %span No aphorisms
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Author
+            %th Aphorism
+            %th Published
+        %tbody
+        - @aphorisms.each do |aphorism|
+          %tr
+            %td= aphorism.author
+            %td= aphorism.body
+            %td
+              %input.publish-checkbox{:type => "checkbox", :checked => aphorism.published, :data => {:aphorism_id => aphorism.id}}
+
+  :javascript
+    $(function() {
+      // Update publish status with AJAX
+      $(".publish-checkbox").change(function(event) {
+        var id = $(this).data("aphorism-id");
+        var publish = $(this).is(":checked");
+        $.post("", {"published": publish, "aphorism": id});
+      });
+    });
+  .row
+    %form.form-horizontal{:method => "POST", :action => "#{EnvironmentHelper.route("new-aphorism")}"}
+      %legend Add New Aphorism:
+      .control-group{:class => ('error' if @errors[:author])}
+        %label.control-label{:for => "inputAuthor"} Author:
+        .controls
+          %input#inputAuthor{:type => "text", :placeholder => "Author", :name => "author"}
+          - if @errors[:author]
+            %span.help-inline= @errors[:author]
+
+      .control-group{:class => ('error' if @errors[:aphorism])}
+        %label.control-label{:for => "inputAphorism"} Aphorism:
+        .controls
+          %textarea#inputAphorism{:placeholder => "Aphorism", :name => "aphorism"}
+          - if @errors[:aphorism]
+            %span.help-inline= @errors[:aphorism]
+
+      .control-group
+        .controls
+          %button.btn#inputAuthor{:type => "submit"} Add Aphorism

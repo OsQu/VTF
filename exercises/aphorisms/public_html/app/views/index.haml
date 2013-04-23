@@ -1,0 +1,28 @@
+.container
+  %a.btn.btn-link.pull-right{:href => "#{EnvironmentHelper.route("logout")}"} Logout
+  %h1 Aphorisms
+
+  %p
+    Welcome to Aphorisms. Here you can share your favourite aphorisms with
+    every other user. First upload your aphorisms and then select which ones you
+    want to publish for the big audience!
+
+  %a.btn.btn-primary{:href => EnvironmentHelper.route("manage")} Manage Aphorisms
+
+  %h2 Published Aphorisms:
+  - if @aphorisms.nil? || @aphorisms.empty?
+    %strong No aphorisms published yet.
+  - else
+    %table.table.table-striped
+      %thead
+        %tr
+          %th User
+          %th Author
+          %th Aphorism
+      %tbody
+      - @aphorisms.each do |aphorism|
+        %tr
+          %td= aphorism.user.name
+          %td= aphorism.author
+          %td= aphorism.body
+

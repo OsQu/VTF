@@ -93,3 +93,5 @@ gem install sinatra
 gem install haml
 gem install datamapper
 gem install pg
+gem install sequel
+gem install multi_json

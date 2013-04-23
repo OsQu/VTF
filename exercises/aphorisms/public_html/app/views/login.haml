@@ -1,0 +1,27 @@
+.container
+  .row
+    .offset3
+      %h2 Login
+  .row
+    .offset2
+      - if @errors[:general]
+        %p.text-error= @errors[:general]
+
+    %form.form-horizontal{:method => "POST", :action => "#{EnvironmentHelper.route('login')}"}
+      .control-group{:class => ('error' if @errors[:name])}
+        %label.control-label{:for => "inputName"} Name
+        .controls
+          %input#inputName{:type => "text", :placeholder => "Name", :name => "name"}
+          - if @errors[:name]
+            %span.help-inline= @errors[:name]
+
+      .control-group{:class => ('error' if @errors[:password])}
+        %label.control-label{:for => "inputPassword"} Password
+        .controls
+          %input#inputPassword{:type => "password", :placeholder => "Password", :name => "password"}
+          - if @errors[:password]
+            %span.help-inline= @errors[:password]
+      .control-group
+        .controls
+          %button.btn{:type => "submit"} Sign in
+          %a.btn-link.btn{:href => "#{EnvironmentHelper.route('register')}"} Register
