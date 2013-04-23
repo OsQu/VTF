@@ -95,3 +95,17 @@ gem install datamapper
 gem install pg
 gem install sequel
 gem install multi_json
+
+# Install PhantomJS and CasperJS for headless browsing
+cd /tmp
+wget https://phantomjs.googlecode.com/files/phantomjs-1.9.0-linux-x86_64.tar.bz2
+bunzip2 phantomjs-1.9.0-linux-x86_64.tar.bz2
+tar -xvf phantomjs-1.9.0-linux-x86_64.tar
+sudo cp phantomjs-1.9.0-linux-x86_64/bin/phantomjs /usr/bin/
+
+cd /home/vagrant
+apt-get install -y git
+git clone git://github.com/n1k0/casperjs.git
+cd casperjs
+git checkout tags/1.0.2
+ln -sf `pwd`/bin/casperjs /usr/local/bin/casperjs

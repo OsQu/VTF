@@ -15,7 +15,9 @@ class Aphorisms < Sinatra::Application
   end
 
   get EnvironmentHelper.route(''), auth_required: true do
+    @last_user = User.order(:last_logged).last
     @aphorisms = Aphorism.where(:published => true).all
+
     haml :index
   end
 
@@ -33,13 +35,13 @@ class Aphorisms < Sinatra::Application
 
     if params[:published].nil? || params[:published].empty?
       status 400
-      return "Invalid published parameter"
+      return "invalid published parameter"
     end
 
     aphorism = Aphorism.where(:user => @user, :id => params[:aphorism])
     if aphorism.nil?
       status 404
-      return "Could not found aphorism"
+      return "could not found aphorism"
     end
 
     aphorism.update(published: params[:published])
@@ -48,14 +50,14 @@ class Aphorisms < Sinatra::Application
   end
 
   post EnvironmentHelper.route("new-aphorism"), auth_required: true do
-    # Validate
+    # validate
     errors = {}
     if params[:author].nil? || params[:author].empty?
-      errors[:author] = "Author missing"
+      errors[:author] = "author missing"
     end
 
     if params[:aphorism].nil? || params[:aphorism].empty?
-      errors[:aphorism] = "Aphorism missing"
+      errors[:aphorism] = "aphorism missing"
     end
 
     unless errors.empty?
@@ -63,7 +65,6 @@ class Aphorisms < Sinatra::Application
       redirect EnvironmentHelper.route("manage")
     end
 
-    puts @user
     Aphorism.create(user: @user, author: params[:author], body: params[:aphorism], published: false)
     redirect EnvironmentHelper.route("manage")
   end

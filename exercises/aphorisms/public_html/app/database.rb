@@ -8,6 +8,7 @@ require 'digest'
   primary_key :id
   String :name
   String :password_hash
+  DateTime :last_logged
 end
 
 @DB.create_table? :aphorisms do
@@ -33,7 +34,7 @@ class User < Sequel::Model
     end
 
     hash = Digest::MD5.hexdigest(password)
-    User.create(name: name, password_hash: hash)
+    User.create(name: name, password_hash: hash, last_logged: Time.now)
   end
 end
 

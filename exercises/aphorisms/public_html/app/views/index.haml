@@ -1,5 +1,5 @@
-.container
-  %a.btn.btn-link.pull-right{:href => "#{EnvironmentHelper.route("logout")}"} Logout
+.container{:role => "main"}
+  %a#logout.btn.btn-link.pull-right{:href => "#{EnvironmentHelper.route("logout")}"} Logout
   %h1 Aphorisms
 
   %p
@@ -25,4 +25,9 @@
           %td= aphorism.user.name
           %td= aphorism.author
           %td= aphorism.body
+
+- unless @last_user.nil?
+  .footer
+    .container
+      %p.muted.lastlogin Last login at #{@last_user.last_logged.strftime("%H:%M")} by #{@last_user.name}
 
