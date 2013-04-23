@@ -29,7 +29,7 @@ pretty often! Your task is to publish aphorism-lovers great aphorism."
     aphorisms_md = RDiscount.new(aphorisms_desc)
     xss.exercises << Exercise.create(name: "Aphorisms", parameterized_name: "aphorisms",
       description: aphorisms_md.to_html,
-      sources: "authenticate.rb, database.rb, environment_helper.rb, app.rb, setup.sh, views/manage.haml, views/login.haml, views/register.haml, views/index.haml, views/layout.haml")
+      sources: "authenticate.rb, database.rb, environment_helper.rb, app.rb, views/manage.haml, views/login.haml, views/register.haml, views/index.haml, views/layout.haml")
   end
 
   desc "Compile source code hilights to database"

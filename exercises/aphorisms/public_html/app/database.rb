@@ -24,7 +24,6 @@ class User < Sequel::Model
 
   def self.authenticate(name, password)
     hash = Digest::MD5.hexdigest(password)
-    puts hash
     User.first(name: name, password_hash: hash)
   end
 

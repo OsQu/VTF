@@ -7,11 +7,11 @@ module Authenticate
     end
   end
 
-module Helpers
-  def authenticated?
-    @user != nil
+  module Helpers
+    def authenticated?
+      @user != nil
+    end
   end
-end
 
   def self.registered(app)
     app.before do
