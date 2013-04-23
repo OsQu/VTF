@@ -4,19 +4,6 @@ require 'multi_json'
 require './environment_helper'
 require './database'
 
-@DB.create_table? :users do
-  primary_key :id
-  String :name
-  String :password_hash
-end
-
-@DB.create_table? :aphorisms do
-  primary_key :id
-  Integer :user_id
-  String :author
-  String :body
-  TrueClass :published
-end
 
 # Seed data
 seed = MultiJson.load(File.read("env"))
