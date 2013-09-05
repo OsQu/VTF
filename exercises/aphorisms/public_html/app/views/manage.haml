@@ -22,15 +22,6 @@
             %td
               %input.publish-checkbox{:type => "checkbox", :checked => aphorism.published, :data => {:aphorism_id => aphorism.id}}
 
-  :javascript
-    $(function() {
-      // Update publish status with AJAX
-      $(".publish-checkbox").change(function(event) {
-        var id = $(this).data("aphorism-id");
-        var publish = $(this).is(":checked");
-        $.post("", {"published": publish, "aphorism": id});
-      });
-    });
   .row
     %form.form-horizontal{:method => "POST", :action => "#{EnvironmentHelper.route("new-aphorism")}"}
       %legend Add New Aphorism:
@@ -51,3 +42,13 @@
       .control-group
         .controls
           %button.btn#inputAuthor{:type => "submit"} Add Aphorism
+          
+  :javascript
+    $(function() {
+      // Update publish status with AJAX
+      $(".publish-checkbox").change(function(event) {
+        var id = $(this).data("aphorism-id");
+        var publish = $(this).is(":checked");
+        $.post("", {"published": publish, "aphorism": id});
+      });
+    });
